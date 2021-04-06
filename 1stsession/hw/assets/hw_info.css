@@ -1,0 +1,19 @@
+section>div{
+    width: 1430px;
+}
+
+#card {
+    width: 300px;
+    height: 450px;
+    text-align: center;
+    border: 1px #EE4D47 solid;
+    border-radius: 10px;
+}
+
+img {
+    width: 170px;
+}
+
+#card>p {
+    color: #4f4f4f;
+}
