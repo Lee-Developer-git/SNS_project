@@ -1,0 +1,38 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header>div {
+    width: 1430px;
+    display: inline;
+    margin: 30px;
+}
+
+#title>a {
+    color: #EE4D47;
+}
+
+#info>a, #dev>a{
+    color: #4f4f4f;
+    text-decoration: none;
+}
+
+section{
+    width: 1430px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a>h1 {
+    color: black;
+    font-size: 80px;
+}
+
+.btn {
+    color: white;
+    background-color: #EE4D47;
+    font-size: 15px;
+    padding: 15px;
+}
