@@ -6,6 +6,3 @@ def showmain(request):
 
 def showinfo(request):
     return render(request, 'main/show_info.html')
-
-def mainpage(request):
-    return render(request, 'main/mainpage.html')
