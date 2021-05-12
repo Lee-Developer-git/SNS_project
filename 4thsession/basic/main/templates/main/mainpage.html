@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>2021 Dongguk Likelion 9th SNS</h1>
+
+<a href="{% url 'first' %}">first</a>
+<a href="{% url 'second' %}">second</a>
+<img src="{%static 'images/image01.jpg' %}" />
+
+<h2><a href="{%url 'new'%}">글쓰기</a></h2>
+
+<h1>글 목록</h1>
+{{blogs}}
+<div>
+    {% for blog in blogs%}
+    <div>
+        <h3>{{blog.title}}</h3>
+        {{blog.writer}}<br/>
+        {{blog.summary}}
+        <a href="{% url 'detail' blog.id %}">...자세히</a>
+    </div>
+    {%endfor%}
+</div>
+
+{% endblock %}
