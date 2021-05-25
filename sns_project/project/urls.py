@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.showmain, name="main"),
     path('info/', views.showinfo, name="info"),
+    path('post/', views.showpost, name="post"),
+    path('<str:id>', views.postdetail, name="postDetail"),
+    path('postCreate/', views.postCreate, name="postCreate"),
+    path('create/', views.create, name="create")
 ]

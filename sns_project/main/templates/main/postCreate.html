@@ -1,0 +1,18 @@
+{% extends 'post.html' %}
+
+{% load static %}
+{% block content %}
+
+<div>
+    <form action="{% url 'create' %}">
+        {%csrf_token%}
+        <label for="title" class="form-label">제목 :</label>
+        <input type="text" class="form-control" id="title" name="title"/>
+        <label for="writer" class="form-label">작성자 :</label>
+        <input type="text" class="form-control" id="writer" name="writer"/>
+        <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
+        <button type="submit">제출</button>
+    </form>
+</div>
+
+{% endblock %}

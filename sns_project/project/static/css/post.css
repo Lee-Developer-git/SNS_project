@@ -1,0 +1,25 @@
+.card{
+    float: left;
+    margin: 80px 0 0 140px;
+}
+
+#card-body{
+    text-align: center;
+}
+
+#postdetail>p, #postdetail>h4{
+    color: black;
+}
+
+#postOne{
+    width: 60%;
+}
+
+#btn-write{
+    color: white;
+    background-color: #EE4D47;
+    font-size: 15px;
+    padding: 10px;
+    margin-right: 150px;
+    float: right;
+}

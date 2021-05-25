@@ -1,0 +1,14 @@
+{% extends 'post.html' %}
+
+{% load static %}
+{% block content %}
+<section class="d-flex justify-content-center">
+    <div id="postOne">
+        <h2 class="d-flex justify-content-center mb-5 mt-5">{{post.title}}</h2>
+        <p>글쓴이 : {{post.writer}}</p>
+        <p>작성일 : {{post.pub_date}}</p>
+        <p>{{post.body}}</p>
+    </div>
+</section>
+
+{% endblock %}
