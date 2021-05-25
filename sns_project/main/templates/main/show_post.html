@@ -3,28 +3,30 @@
 {% load static %}
 {% block content %}
 <section>
-    <a href="{% url 'postCreate' %}" id="btn-write" class="btn mt-5">
-        글 작성하기
-    </a>
-    <br/><br/><br/><br/>
-    {% for post in posts %} <!--포스트 반복-->
-    <div class="card" style="width: 35%; float: left;">
-        <div id="card-body" class="card-body"> <!-- 포스트 아이디를 넣어서 전달-->
-            <a id="postdetail" href="{% url 'postDetail' post.id%}">
-                <h4
-                    id="card-title"
-                    class="card-title"
-                >{{post.title}}</h4>
-                <p
-                    id="card-text"
-                    class="card-text"
-                >{{post.writer}}</p>
-                <p>{{post.pub_date}}</p>
-                <p>{{post.summary}}...</p>
-            </a>
+    <div id="posts">
+        <a href="{% url 'postCreate' %}" id="btn-write" class="btn mt-5">
+            글 작성하기
+        </a>
+        <br/><br/><br/><br/>
+        {% for post in posts %} <!--포스트 반복-->
+        <div class="card mt-3 col-sm-4">
+            <div id="card-body" class="card-body"> <!-- 포스트 아이디를 넣어서 전달-->
+                <a id="postdetail" href="{% url 'postDetail' post.id%}">
+                    <h4
+                        id="card-title"
+                        class="card-title"
+                    >{{post.title}}</h4>
+                    <p
+                        id="card-text"
+                        class="card-text"
+                    >{{post.writer}}</p>
+                    <p>{{post.pub_date}}</p>
+                    <p>{{post.summary}}...</p>
+                </a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </section>
 
 {% endblock %}

@@ -1,6 +1,12 @@
+section{
+    width: 100%;
+}
+#posts{
+    text-align: center;
+}
+
 .card{
     float: left;
-    margin: 80px 0 0 140px;
 }
 
 #card-body{
@@ -11,7 +17,7 @@
     color: black;
 }
 
-#postOne{
+#postOne, #form-box{
     width: 60%;
 }
 
@@ -23,3 +29,4 @@
     margin-right: 150px;
     float: right;
 }
+
