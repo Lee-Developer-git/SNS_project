@@ -4,14 +4,14 @@
 {% block content %}
 <section>
     <div id="posts">
-        <a href="{% url 'postCreate' %}" id="btn-write" class="btn mt-5">
+        <a href="{% url 'main:postCreate' %}" id="btn-write" class="btn mt-5">
             글 작성하기
         </a>
         <br/><br/><br/><br/>
         {% for post in posts %} <!--포스트 반복-->
         <div class="card mt-3 col-sm-4">
             <div id="card-body" class="card-body"> <!-- 포스트 아이디를 넣어서 전달-->
-                <a id="postdetail" href="{% url 'postDetail' post.id%}">
+                <a id="postdetail" href="{% url 'main:postDetail' post.id%}">
                     <h4
                         id="card-title"
                         class="card-title"

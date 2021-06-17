@@ -1,12 +1,12 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg mt-3" style="border-bottom: 1px #EE4D47 solid;">
+<nav class="navbar navbar-expand-lg sticky-top" style="border-bottom: 1px #EE4D47 solid; background-color: #FEEFF0;">
     <div id="title" class="nav-item">
-        <a class="nav-link" href="{% url 'main' %}"><b>Seulgi's Page</b></a>
+        <a class="nav-link" href="{% url 'main:main' %}"><b>Seulgi's Page</b></a>
     </div>
     <div id="info" class="nav-item">
-        <a class="nav-link" href="{% url 'info' %}">INFO</a>
+        <a class="nav-link" href="{% url 'main:info' %}">INFO</a>
     </div>
     <div id="post" class="nav-item">
-        <a class="nav-link" href="{% url 'post' %}" style="color: #4f4f4f;">POST</a>
+        <a class="nav-link" href="{% url 'main:post' %}" style="color: #4f4f4f;">POST</a>
     </div>
 </nav>
