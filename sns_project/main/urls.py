@@ -11,5 +11,5 @@ urlpatterns = [
     path('create/', create, name="create"),
     path('postEdit/<str:id>', postEdit, name="postEdit"),
     path('update/<str:id>', update, name="update"),
-    path('delete/<str:id>', delete, name="delete")
+    path('delete/<str:id>', delete, name="delete"),
 ]

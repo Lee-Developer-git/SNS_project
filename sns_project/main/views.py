@@ -25,10 +25,10 @@ def postCreate(request):
 def create(request):
     new_post = Post()
     new_post.title = request.POST['title']
-    new_post.writer = request.POST['writer']
+    new_post.writer = request.user
     new_post.pub_date = timezone.now()
     new_post.body = request.POST['body']
-    new_post.image = request.FILES['image']
+    new_post.image = request.FILES.get('image')
     new_post.save()
     return redirect('main:postDetail', new_post.id)
 
@@ -40,7 +40,7 @@ def postEdit(request, id):
 def update(request, id):
     update_post = Post.objects.get(id = id)
     update_post.title = request.POST['title']
-    update_post.writer = request.POST['writer']
+    update_post.writer = request.user
     update_post.pub_date = timezone.now()
     update_post.body = request.POST['body']
     update_post.save()
