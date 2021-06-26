@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from django.utils import timezone
 
 def showmain(request):
@@ -16,7 +16,8 @@ def showpost(request):
 def postdetail(request, id):
     posts = Post.objects.all()
     post = get_object_or_404(Post, pk = id)
-    return render(request, 'main/postDetail.html', {'post':post, 'posts': posts})
+    all_comments = post.comments.all().order_by('-created_at')
+    return render(request, 'main/postDetail.html', {'post':post, 'posts': posts, 'comments': all_comments})
 
 # create post
 def postCreate(request):
@@ -50,3 +51,11 @@ def delete(request, id):
     delete_post = Post.objects.get(id = id)
     delete_post.delete()
     return redirect('main:post')
+
+def create_comment(request, post_id):
+    if request.method == "POST":
+        post = get_object_or_404(Post, pk=post_id)
+        current_user = request.user
+        comment_content = request.POST.get('content')
+        Comment.objects.create(content = comment_content, writer=current_user, post=post)
+    return redirect('main:postDetail', post_id)

@@ -20,7 +20,25 @@
             {% endif %}
             <p>{{post.body}}</p>
         </div>
-    </div>
+        {% if user.is_authenticated %}
+        <div class="input-group mb-3">
+            <form action="{% url 'main:create_comment' post.id %}" method="POST">
+                {%csrf_token%}
+                <textarea name="content" class="form-control" placeholder="댓글내용 입력" aria-label="Recipient's username" aria-describedby="button-addon2"></textarea>
+                <button type="submit" class="btn btn-outline-secondary">작성</button>
+            </form>
+        </div>
+        {% else %}
+        {% endif %}
+        <div>
+            {% for comment in comments %}
+            <div>
+                작성자 : {{comment.writer}}<br/>
+                {{comment.content}}<br/>
+            </div>
+            {% endfor %}
+        </div>
+    </div>  
 </section>
 
 {% endblock %}

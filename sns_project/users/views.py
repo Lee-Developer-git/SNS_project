@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from main.models import Post
+from django.contrib.auth.models import User
 
 # Create your views here.
 def mypage(request):
