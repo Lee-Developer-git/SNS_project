@@ -4,16 +4,25 @@
 {% block content %}
 <section class="d-flex justify-content-center">
     <div id="container" class="mt-5">
+        {% if posts.writer %}
         <row style="height: 70px;">
             <a href="{% url 'main:delete' post.id %}"
             class="btn btn-style">삭제하기</a>
             <a 
             href="{% url 'main:postEdit' post.id %}"
             class="btn btn-style">수정하기</a>
-        </row><br/><br>
+        </row><br/><br>\
+        {% else %}
+        {% endif %}
         <div id="postOne">
             <h2 id="card-title" class="d-flex justify-content-center mb-5 mt-5">{{post.title}}</h2>
-            <p>글쓴이 : {{post.writer}}</p>
+            {% if post.writer %}
+                {% if 'user' in post.writer.username %}
+                    <p>글쓴이 : {{ post.writer.last_name }}{{ post.writer.first_name }}</p>
+                {% else %}
+                    <p>글쓴이 : {{post.writer}}</p>
+                {% endif %}
+            {% endif %}
             <p>작성일 : {{post.pub_date}}</p>
             {% if post.image %}
             <p><img src="{{ post.image.url }}" alt="image" style="width: 56%;"></p>
@@ -33,7 +42,11 @@
         <div>
             {% for comment in comments %}
             <div>
+                {% if 'user' in comment.writer.username %}
+                작성자 : {{comment.writer.last_name}}{{comment.writer.first_name}}<br/>
+                {% else %}
                 작성자 : {{comment.writer}}<br/>
+                {% endif %}
                 {{comment.content}}<br/>
             </div>
             {% endfor %}

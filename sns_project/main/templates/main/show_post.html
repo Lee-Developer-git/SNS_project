@@ -22,7 +22,14 @@
                     <p
                         id="card-text"
                         class="card-text"
-                    >{{post.writer}}</p>
+                    >
+                    {% if post.writer %}
+                        {% if 'user' in post.writer.username %}
+                            {{ post.writer.last_name }}{{ post.writer.first_name }}
+                        {% else %}
+                            {{post.writer}}
+                        {% endif %}
+                    {% endif %}</p>
                     <p>{{post.pub_date}}</p>
                     <p>{{post.summary}}...</p>
                 </a>

@@ -3,7 +3,11 @@
 {% load static %}
 {% block content %}
 <div class="container">
+    {% if 'user' in user.username %}
+    <h1>{{user.last_name}}{{user.first_name}}</h1>
+    {% else %}
     <h1>{{user.username}}</h1>
+    {% endif %}
     <div>
         {% for post in posts %}
             <a href="{% url 'main:postDetail' post.id %}">{{post.title}}</a>

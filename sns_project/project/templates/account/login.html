@@ -1,0 +1,47 @@
+{% extends 'account/base.html' %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% providers_media_js %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <div style="width: 40%; margin-top: 14vh; border: 1px solid #212529; border-radius: 7px; background-color: white; color: black; padding: 20px;" >
+        <div class="d-flex justify-content-center mt-4 mb-3">
+            <h1>{% trans "Sign In" %}</h1>
+        </div>
+        {% get_providers as socialaccount_providers %}
+
+        {% if socialaccount_providers %}
+        {% blocktrans with site.name as site_name %}
+        {% endblocktrans %}
+
+        <div class="socialaccount_ballot">
+
+            <ul class="socialaccount_providers">
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </ul>
+
+            <div class="login-or">{% trans 'or' %}</div>
+
+        </div>
+
+        {% include "socialaccount/snippets/login_extra.html" %}
+
+        {% else %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+        {% endif %}
+
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <a href="{% url 'account_signup' %}">회원가입</a>
+            <button class="primaryAction btn btn-secondary" type="submit">{% trans "Sign In" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
