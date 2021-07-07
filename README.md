@@ -7,3 +7,4 @@
 | [4번째 세션](https://www.notion.so/ORM-Create-Read-4015afdf97f44c3687fe28e0f91300a1) | ORM(model), Create, Read 기능 |
 | [5번째 세션](https://www.notion.so/5-Update-Delete-5ecd04c8801f4db9890fcac007a08298) | Update, Delete 기능 |
 | [6번째 세션](https://www.notion.so/6-django-allauth-c5e16db1f9894f448ee7537568018127) | 모델관계, allauth |
+| [방학 1번째 세션](https://www.notion.so/1-Comment-Google-Login-8e62aa65754642cc809a1b3113ec5023) | Comment, goolge login 연동 |
