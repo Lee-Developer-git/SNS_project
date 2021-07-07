@@ -4,17 +4,17 @@
 {% block content %}
 <section class="d-flex justify-content-center">
     <div id="container" class="mt-5">
-        {% if posts.writer %}
+        {% if user == post.writer %}
         <row style="height: 70px;">
             <a href="{% url 'main:delete' post.id %}"
             class="btn btn-style">삭제하기</a>
             <a 
             href="{% url 'main:postEdit' post.id %}"
             class="btn btn-style">수정하기</a>
-        </row><br/><br>\
+        </row><br/><br>
         {% else %}
         {% endif %}
-        <div id="postOne">
+        <div id="postOne" class="p-3" style="border: 1px solid #EE4D47; border-radius: 3px;">
             <h2 id="card-title" class="d-flex justify-content-center mb-5 mt-5">{{post.title}}</h2>
             {% if post.writer %}
                 {% if 'user' in post.writer.username %}
@@ -29,27 +29,41 @@
             {% endif %}
             <p>{{post.body}}</p>
         </div>
-        {% if user.is_authenticated %}
-        <div class="input-group mb-3">
-            <form action="{% url 'main:create_comment' post.id %}" method="POST">
-                {%csrf_token%}
-                <textarea name="content" class="form-control" placeholder="댓글내용 입력" aria-label="Recipient's username" aria-describedby="button-addon2"></textarea>
-                <button type="submit" class="btn btn-outline-secondary">작성</button>
-            </form>
-        </div>
-        {% else %}
-        {% endif %}
-        <div>
-            {% for comment in comments %}
-            <div>
-                {% if 'user' in comment.writer.username %}
-                작성자 : {{comment.writer.last_name}}{{comment.writer.first_name}}<br/>
-                {% else %}
-                작성자 : {{comment.writer}}<br/>
-                {% endif %}
-                {{comment.content}}<br/>
+        <!-- comment-area -->
+        <div id="comment-area">
+            {% if user.is_authenticated %}
+            <div class="input-group mb-3 mt-3 d-flex justify-content-center">
+                <form action="{% url 'main:create_comment' post.id %}" method="POST">
+                    {%csrf_token%}
+                    <textarea id="content" name="content" class="form-control" placeholder="댓글내용 입력" aria-label="With textarea" style="width: 40rem;
+                    display: inline;
+                    float: left;"></textarea>
+                    <button id="comment-submit" type="submit" class="btn btn-outline-secondary ms-3" style="float: left;
+                    display: inline; height: 100%;">작성</button>
+                </form>
             </div>
-            {% endfor %}
+            {% else %}
+            {% endif %}
+            <ul id="comment-list" class="list-group mt-2">
+                {% for comment in comments %}
+                <div class="list-group-item list-group-item-action">
+                    {% if 'user' in comment.writer.username %}
+                    <p>작성자 : {{comment.writer.last_name}}{{comment.writer.first_name}}</p>
+                    {% else %}
+                    <p>작성자 : {{comment.writer}}</p>
+                    {% endif %}
+                    <p>{{comment.created_at}}</p>
+                    <div class="default-select" id="default-select" style="float: right;">
+                        <select>
+                            <option value="1">선택</option>
+                            <option value="2">수정</option>
+                            <option value="3">삭제</option>
+                        </select>
+                    </div>
+                    <div>{{comment.content}}</div>
+                </div>
+                {% endfor %}
+            </ul>
         </div>
     </div>  
 </section>
