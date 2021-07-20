@@ -11,31 +11,38 @@
         {% else %}
         {% endif %}
         <br/><br/><br/><br/>
-        {% for post in posts %} <!--포스트 반복-->
-        <div class="card mt-3 col-sm-4">
-            <div id="card-body" class="card-body"> <!-- 포스트 아이디를 넣어서 전달-->
-                <a id="postdetail" href="{% url 'main:postDetail' post.id%}">
-                    <h4
-                        id="card-title"
-                        class="card-title"
-                    >{{post.title}}</h4>
-                    <p
-                        id="card-text"
-                        class="card-text"
-                    >
+        <table id="post_detail" class="table table-hover position-absolute top-50 start-50 translate-middle" style="width: 85%;">
+            <thead>
+                <tr>
+                    <th scope="col">글 제목</th>
+                    <th scope="col">글쓴이</th>
+                    <th scope="col">날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td style="width: 65%;">
+                        <a id="post_title" href="{% url 'main:postDetail' post.id%}" style="color: #212529;">
+                            {{post.title}}
+                        </a>
+                    </td>
+                    <td style="width: 8%;">
                     {% if post.writer %}
                         {% if 'user' in post.writer.username %}
                             {{ post.writer.last_name }}{{ post.writer.first_name }}
                         {% else %}
                             {{post.writer}}
                         {% endif %}
-                    {% endif %}</p>
-                    <p>{{post.pub_date}}</p>
-                    <p>{{post.summary}}...</p>
-                </a>
-            </div>
-        </div>
-        {% endfor %}
+                    {% endif %}
+                    </td>
+                    <td style="width: 27%;">
+                        {{post.pub_date}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </section>
 

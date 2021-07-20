@@ -1,52 +1,55 @@
-section{
-    width: 100%;
+section {
+  width: 100%;
 }
-#posts{
-    text-align: center;
+#posts {
+  text-align: center;
 }
-
-.card{
-    float: left;
-}
-#card-title{
-    color: #E6A23B;
-}
-#card-body{
-    text-align: center;
+#post-title {
+  color: #e6a23b;
 }
 
-#postdetail>p, #postdetail>h4{
-    color: black;
+#post-writer > a {
+  color: black;
 }
 
-#container, #form-box{
-    width: 60%;
+#postdetail > p,
+#postdetail > h4 {
+  color: black;
 }
 
-#comment-area #content{
-    width: 700px;
-    display: inline;
-    float: left;
+#container,
+#form-box {
+  width: 60%;
 }
 
-#comment-area #comment-submit{
-    float: left;
-    display: inline;
+#comment-area #content {
+  width: 700px;
+  display: inline;
+  float: left;
 }
 
-#btn-write{
-    color: white;
-    background-color: #EE4D47;
-    font-size: 15px;
-    padding: 10px;
-    margin-right: 150px;
-    float: right;
+#comment-area #comment-submit {
+  float: left;
+  display: inline;
 }
 
-.btn-style{
-    color: #E6A23B;
-    background-color: #FDF6EC;
-    border: 1px #E6A23B solid;
-    padding: 10px;
-    float: right;
+#btn-write {
+  color: white;
+  background-color: #ee4d47;
+  font-size: 15px;
+  padding: 10px;
+  margin-right: 150px;
+  float: right;
+}
+
+.btn-style {
+  color: #e6a23b;
+  background-color: #fdf6ec;
+  border: 1px #e6a23b solid;
+  padding: 10px;
+  float: right;
+}
+
+#post_detail {
+  width: 85%;
 }

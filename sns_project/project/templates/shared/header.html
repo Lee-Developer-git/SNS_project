@@ -7,12 +7,12 @@
         <a class="nav-link" href="{% url 'main:info' %}">INFO</a>
     </div>
     <div id="post" class="nav-item">
-        <a class="nav-link" href="{% url 'main:post' %}" style="color: #4f4f4f;">POST</a>
+        <a class="nav-link" href="{% url 'main:post' %}">POST</a>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #4f4f4f;">
                 ACCOUNT
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,7 +28,7 @@
     </div>
     {% if user.is_authenticated %}
     <div id="mypage" class="nav-item">
-        <a class="nav-link" href="{% url 'users:mypage' %}" style="color: #4f4f4f;">MYPAGE</a>
+        <a class="nav-link" href="{% url 'users:mypage' request.user.id %}" style="color: #4f4f4f;">MYPAGE</a>
     </div>
     {% else %}
     {% endif %}
