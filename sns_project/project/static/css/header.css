@@ -6,6 +6,13 @@ body {
   top: -15px;
 }
 
+#title {
+  float: left;
+  text-align: center;
+  left: 44%;
+  position: absolute;
+}
+
 #title > a {
   color: #ee4d47;
 }

@@ -20,10 +20,9 @@ def showpost(request):
 
 def postdetail(request, id):
     user = request.user
-    posts = Post.objects.filter(writer=user)
     post = get_object_or_404(Post, pk=id)
     all_comments = post.comments.all().order_by('-created_at')
-    return render(request, 'main/postDetail.html', {'post': post, 'posts': posts, 'comments': all_comments})
+    return render(request, 'main/postDetail.html', {'post': post, 'comments': all_comments})
 
 # create post
 

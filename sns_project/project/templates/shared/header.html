@@ -1,15 +1,17 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg sticky-top" style="border-bottom: 1px #EE4D47 solid; background-color: #FEEFF0;">
-    <div id="title" class="nav-item">
-        <a class="nav-link" href="{% url 'main:main' %}"><b>Seulgi's Page</b></a>
-    </div>
+<nav class="navbar navbar-expand-lg wow fadeInDown mt-4"
+    data-wow-duration="0.8s" data-wow-delay="0s"
+    style="border-bottom: 1px #EE4D47 solid;">
+    {% if user.is_authenticated %}
     <div id="info" class="nav-item">
         <a class="nav-link" href="{% url 'main:info' %}">INFO</a>
     </div>
+    {% else %}
+    {% endif %}
     <div id="post" class="nav-item">
         <a class="nav-link" href="{% url 'main:post' %}">POST</a>
     </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="nav-item collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #4f4f4f;">
@@ -25,6 +27,9 @@
                 </ul>
             </li>
         </ul>
+    </div>
+    <div id="title" class="nav-item d-flex justify-content-center">
+        <a class="nav-link" href="{% url 'main:main' %}"><b>Seulgi's Page</b></a>
     </div>
     {% if user.is_authenticated %}
     <div id="mypage" class="nav-item">

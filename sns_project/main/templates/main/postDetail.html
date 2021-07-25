@@ -21,16 +21,16 @@
                     </p>
                 {% endif %}
             {% endif %}
-            <p class="ms-3" style="color: #CACACA; float: left;">{{post.pub_date}}</p>
+            <p class="ms-3" style="color: #CACACA; float: left;">{{post.pub_date}}</p><br/><br>
             {% if user.is_authenticated %}
                 {% if user == post.writer %}
-                <span style="width: 30%; display: inline;">
+                <span id="update_box" style="width: 30%; position: absolute; left: 48%; top: 280px;">
                     <a href="{% url 'main:delete' post.id %}"
                     class="btn btn-style">삭제</a>
                     <a 
                     href="{% url 'main:postEdit' post.id %}"
                     class="btn btn-style">수정</a>
-                </span><br/><br>
+                </span>
                 {% else %}
                 {% endif %}
             {% endif %}
@@ -59,17 +59,22 @@
                 {% for comment in comments %}
                 <div class="list-group-item list-group-item-action">
                     {% if 'user' in comment.writer.username %}
-                    <p>작성자 : <a href="{% url 'users:mypage' comment.writer.id %}">{{comment.writer.last_name}}{{comment.writer.first_name}}</a></p>
+                    <p style="float: left;">
+                        <a href="{% url 'users:mypage' comment.writer.id %}">
+                            {{comment.writer.last_name}}{{comment.writer.first_name}}
+                        </a>
+                    </p>
                     {% else %}
-                    <p>작성자 : <a href="{% url 'users:mypage' comment.writer.id %}">{{comment.writer}}</a></p>
+                    <p style="float: left;">
+                        <a href="{% url 'users:mypage' comment.writer.id %}">
+                            {{comment.writer}}
+                        </a>
+                    </p>
                     {% endif %}
-                    <p>{{comment.created_at}}</p>
+                    <p style="float: left;">{{comment.created_at}}</p>
                     <div class="default-select" id="default-select" style="float: right;">
-                        <select>
-                            <option value="1">선택</option>
-                            <option value="2">수정</option>
-                            <option value="3">삭제</option>
-                        </select>
+                        <span>수정 </span>|
+                        <span>삭제</span>
                     </div>
                     <div>{{comment.content}}</div>
                 </div>

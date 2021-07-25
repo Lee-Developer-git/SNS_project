@@ -29,7 +29,8 @@
         <span>팔로워 {{ user.profile.followers.count }}명</span>
         {% for follower in user.profile.followers.all %}
             <a href="{% url 'users:mypage' follower.user.id %}" style="display: inline;">{{ follower.user.username }}</a>
-        {% endfor %}<br/>
+        {% endfor %}
+        &nbsp;&nbsp;
         <span>팔로잉 {{ user.profile.followings.count }}명</span>
         {% for followings in user.profile.followings.all %}
             <a href="{% url 'users:mypage' followings.user.id %}" style="display: inline;">{{ followings.user.username }}</a>

@@ -15,5 +15,40 @@
             <p>취미 : 요리하기, 노래부르기</p>
         </div>
     </div>
+    <button
+        id="btn-contact"
+        type="button"
+        class="btn"
+        data-bs-toggle="modal"
+        data-bs-target="#contactModal"
+    >
+        CONTACT
+    </button>
 </section>
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">CONTACT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="contact-icon" style="margin-left: 5%;">
+                <i class="bi bi-envelope" style="font-size: 30px;"></i>
+                <span>seulgi2027@dgu.ac.kr</span><br/>
+                <a href="https://github.com/Lee-Developer-git">
+                    <i class="bi bi-github" style="font-size: 30px;"></i>
+                    <span>SeulGi_LEE</span><br/>
+                </a>
+                <a href="https://velog.io/@seulg2027">
+                    <i class="bi bi-house-door" style="font-size: 30px;"></i>
+                    <span>https://velog.io/@seulg2027</span>
+                </a>
+            </div><br/>
+        <div>
+            <button type="button" class="btn btn-secondary float-end" data-bs-dismiss="modal" style="margin-right: 5%; margin-bottom: 5px;">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
