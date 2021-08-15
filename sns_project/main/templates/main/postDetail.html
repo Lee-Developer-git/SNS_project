@@ -22,6 +22,31 @@
                 {% endif %}
             {% endif %}
             <p class="ms-3" style="color: #CACACA; float: left;">{{post.pub_date}}</p><br/><br>
+            <span href="#" class="like" name="{{ post.id }}" value="Like" style="cursor: pointer;">
+                {% if user in post.like_user_set.all %}
+                <i class="bi bi-hand-thumbs-up-fill" id="like-icon" style="font-size: 20px;"></i>
+                {% else %}
+                <i class="bi bi-hand-thumbs-up" id="like-icon" style="font-size: 20px;"></i>
+                {% endif %}
+                <span id="count-{{ post.id }}" class="alt-services-title font-alt"> 
+                    좋아요 {{ post.like_count }}개
+                </span>
+            </span>
+            <span href="#" class="unlike" name="{{ post.id }}" value="unLike" style="cursor: pointer; margin-left: 5px;">
+                {% if user in post.unlike_user_set.all %}
+                <i class="bi bi-hand-thumbs-down-fill" id="unlike-icon" style="font-size: 20px;"></i>
+                {% else %}
+                <i class="bi bi-hand-thumbs-down" id="unlike-icon" style="font-size: 20px;"></i>
+                {% endif %}
+                <span id="count-un{{ post.id }}" class="alt-services-title font-alt"> 
+                    싫어요 
+                    {% if post.unlike_count == 0 %} 
+                    0개 
+                    {% else %}
+                    {{ post.unlike_count }}개
+                    {% endif %}
+                </span>
+            </span>
             {% if user.is_authenticated %}
                 {% if user == post.writer %}
                 <span id="update_box" style="width: 30%; position: absolute; left: 48%; top: 280px;">
@@ -59,29 +84,89 @@
                 {% for comment in comments %}
                 <div class="list-group-item list-group-item-action">
                     {% if 'user' in comment.writer.username %}
-                    <p style="float: left;">
+                    <p style="margin: 0px; font-size: 20px;">
                         <a href="{% url 'users:mypage' comment.writer.id %}">
                             {{comment.writer.last_name}}{{comment.writer.first_name}}
                         </a>
                     </p>
                     {% else %}
-                    <p style="float: left;">
+                    <p style="margin: 0px; font-size: 20px;">
                         <a href="{% url 'users:mypage' comment.writer.id %}">
                             {{comment.writer}}
                         </a>
                     </p>
                     {% endif %}
-                    <p style="float: left;">{{comment.created_at}}</p>
+                    <p style="float: left; color: #a4a4a4; font-size: 13px; margin: 0px;">{{comment.created_at}}</p>
                     <div class="default-select" id="default-select" style="float: right;">
                         <span>수정 </span>|
                         <span>삭제</span>
                     </div>
-                    <div>{{comment.content}}</div>
+                    <br/><br/>
+                    <p style="margin-top: -10px;">{{comment.content}}</p>
                 </div>
                 {% endfor %}
             </ul>
         </div>
     </div>  
 </section>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $(".like").click(function() { // 좋아요를 눌렀을 때 무슨 기능을 하는지 나타내 줌
+        var pk = $(this).attr('name');
+        $.ajax({
+            type: "POST",
+            url: "{% url 'main:like_toggle' post.pk %}",
+            data: {'pk': pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+            dataType: "json", // 데이터 타입 작성
+            success: function(response){
+                if(response.like_count == null){
+                    alert("로그인이 필요합니다.");
+                    window.location.replace("/accounts/login/");
+                } else {
+                    if (response.result == "like"){
+                        $('#like-icon').removeClass();
+                        $('#like-icon').addClass('bi bi-hand-thumbs-up');
+                    } else {
+                        $('#like-icon').removeClass();
+                        $('#like-icon').addClass('bi bi-hand-thumbs-up-fill');
+                    }
+                    $('#count-{{ post.id }}').html('좋아요'+response.like_count+'개'); // 좋아요 수를 출력
+                }
+            },
+            error:function(request, status, error){
+                alert("로그인이 필요합니다.");
+                alert("code:"+ request.status + "\n"+ "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+    $(".unlike").click(function() { // 좋아요를 눌렀을 때 무슨 기능을 하는지 나타내 줌
+        var pk = $(this).attr('name');
+        $.ajax({
+            type: "POST",
+            url: "{% url 'main:unlike_toggle' post.pk %}",
+            data: {'pk': pk, 'csrfmiddlewaretoken':'{{csrf_token}}'},
+            dataType: "json", // 데이터 타입 작성
+            success: function(response){
+                if(response.unlike_count == null){
+                    alert("로그인이 필요합니다.");
+                    window.location.replace("/accounts/login/");
+                } else {
+                    if (response.result == "unlike"){
+                        $('#unlike-icon').removeClass();
+                        $('#unlike-icon').addClass('bi bi-hand-thumbs-down');
+                    } else {
+                        $('#unlike-icon').removeClass();
+                        $('#unlike-icon').addClass('bi bi-hand-thumbs-down-fill');
+                    }
+                    $('#count-un{{ post.id }}').html('싫어요'+response.unlike_count+'개'); // 좋아요 수를 출력
+                }
+            },
+            error:function(request, status, error){
+                alert("로그인이 필요합니다.");
+                alert("code:"+ request.status + "\n"+ "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+</script>
 
 {% endblock %}
